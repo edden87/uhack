@@ -378,11 +378,20 @@ function order_action()
     $bid_value = $_REQUEST['bid_action'];
     $delivery_type = $_REQUEST['delivery_type'];
     $max_qty = $_REQUEST['max_qty'];
-    $committed_qty = $_REQUEST['committed_qty'];
-    $percentage = ($committed_qty * $max_qty) / 100;
 
-    update_post_meta($bid_id, 'uhack-status', $bid_value);
-    wp_send_json_success(['action' => $bid_value, 'bid_id' => $bid_id, 'delivery_type' => $delivery_type]);
+    $committed_percentage = $_REQUEST['committed_percentage'];
+    $total_percentage = $_REQUEST['total_percentage'];
+
+    $data = ['action' => $bid_value, 'bid_id' => $bid_id, 'delivery_type' => $delivery_type];
+
+    if (isset($committed_percentage) && isset($total_percentage))
+    {
+        $data['total_percentage'] = $total_percentage;
+        $data['committed_percentage'] = $committed_percentage;
+    }
+
+//    update_post_meta($bid_id, 'uhack-status', $bid_value);
+    wp_send_json_success($data);
 
     wp_die();
 }
