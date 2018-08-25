@@ -130,7 +130,7 @@ get_header();
                                     <?php elseif ( get_post_meta(get_the_ID(), 'uhack-status', true) == 'declined' ) : ?>
                                         <p class="text-center"><i class="fa fa-times-circle"></i> Declined</p>
                                     <?php else : ?>
-                                        <p><button type="button" class="btn btn-success waves-effect waves-light btn-block approved" data-delivery="<?= get_post_meta(get_the_ID(), 'uhack-deliver_preference', true)  ?>" data-id="<?= get_the_ID() ?>" data-action="approved">Approve</button></p>
+                                        <p><button type="button" class="btn btn-success waves-effect waves-light btn-block approved" data-max-qty="<?= $max_order ?>" data-committed-qty="<?= get_post_meta(get_the_ID(), 'uhack-commited_qty', true) ?>" data-delivery="<?= get_post_meta(get_the_ID(), 'uhack-deliver_preference', true)  ?>" data-id="<?= get_the_ID() ?>" data-action="approved">Approve</button></p>
                                         <p><button type="button" class="btn btn-default waves-effect waves-light btn-block declined" data-delivery="<?= get_post_meta(get_the_ID(), 'uhack-deliver_preference', true)  ?>" data-id="<?= get_the_ID() ?>" data-action="declined">Declined</button></p>
                                     <?php endif; ?>
                                 </div>
@@ -153,7 +153,9 @@ get_header();
                     'action' : 'order_action',
                     'order_id' : $(this).attr('data-id'),
                     'bid_action' : $(this).attr('data-action'),
-                    'delivery_type' : $(this).attr('data-delivery')
+                    'delivery_type' : $(this).attr('data-delivery'),
+                    'committed_qty' : $(this).attr('data-committed-qty'),
+                    'max_qty' : $(this).attr('data-max-qty')
                 }
                 $.post(ajaxurl, $data, function(e) {
                     if (e.success == true)
@@ -185,11 +187,14 @@ get_header();
                                             $message = '<a href="/delivery-partner/" class="btn btn-success waves-effect waves-light btn-block"><i class="ion-map"></i> See Timeline</a>';
                                         }
                                         $('.bidder-status-wrapper').html('<p class="text-center"><i class="fa fa-check-circle"></i> Approved</p>' + $message);
+//                                        console.log($(this).attr('data-committed-qty'));
+//                                        $percentage = ( $(this).attr('data-committed-qty') * $(this).attr('data-max-qty') ) / 100;
+//                                        console.log($percentage);
                                     }
                                     else
                                     {
                                         $message = '<p class="text-center"><i class="fa fa-times-circle"></i> Declined</p>'
-                                        $('.bidder-status-wrapper').html($message);
+                                        $('.progress').html($message);
                                     }
 
                                 }
