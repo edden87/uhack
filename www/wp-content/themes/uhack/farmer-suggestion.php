@@ -7,7 +7,7 @@ get_header();
     <div class="row">
         <div class="col-md-10 center-page m-t-40 center-page">
             <h3>We found farmers base from your Job Order! </h3>
-            <button type="button" class="btn btn-success waves-effect waves-light">Send them an invite</button> <a href="/buyers-order/" class="btn btn-default waves-effect waves-light">No Thanks!</a>
+            <button type="button" class="btn btn-success waves-effect waves-light send-sms">Send them an invite</button> <a href="/buyers-order/" class="btn btn-default waves-effect waves-light">No Thanks!</a>
             <hr>
             <div class="row">
                 <div class="col-md-4">
@@ -113,9 +113,46 @@ get_header();
 <script src="<?= get_stylesheet_directory_uri(); ?>/assets/pages/jquery.companies.js"></script>
 <script src="<?= get_stylesheet_directory_uri(); ?>/assets/pages/jquery.form-advanced.init.js"></script>
 
+<script src="<?= get_stylesheet_directory_uri(); ?>'/plugins/sweet-alert/sweetalert2.min.js'"></script>
+
 <!-- App js -->
 <script src="<?= get_stylesheet_directory_uri(); ?>/assets/js/jquery.core.js"></script>
 <script src="<?= get_stylesheet_directory_uri(); ?>/assets/js/jquery.app.js"></script>
+
+<script>
+    jQuery('button.send-sms').click(function() {
+        var ajaxurl = '<?= admin_url('admin-ajax.php') ?>';
+        var $data = {'action' : 'submit_sms', 'type' : 'invitation'}
+
+        jQuery.post(ajaxurl, $data, function(e) {
+            if (e.success == true)
+            {
+                if (e.success == true)
+                {
+                    swal(
+                        {
+                            title: 'Order Added!',
+                            text: 'Redirecting in 2 seconds...',
+                            type: 'success',
+                            timer: 2000,
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        }
+                    ).then(
+                        function () {
+                        },
+                        // handling the promise rejection
+                        function (dismiss) {
+                            if (dismiss === 'timer') {
+                                window.location.replace("/buyers-order/");
+                            }
+                        }
+                    )
+                }
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

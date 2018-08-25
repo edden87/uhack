@@ -432,7 +432,40 @@ function submit_order()
     wp_die();
 }
 
-update_post_meta(67, 'uhack-deliver_preference', ['self-help', 'trusted-delivery']);
+add_action( 'wp_ajax_submit_sms', 'submit_sms' );
+add_action( 'wp_ajax_nopriv_submit_sms', 'submit_sms' );
+function submit_sms() {
+    $url = 'https://rest.nexmo.com/sms/json?';
+    $header = [];
+    $params = [
+            'api_key' => '1b725766',
+            'api_secret' => 'd501d8d77cf1cbb5',
+            'from' => 'UHACK',
+            'to' => '639290035663'
+    ];
+
+    if ($_REQUEST['type'] == 'invitation')
+    {
+        $params['text'] = 'You got an invitation! Please make an offer. -UHACK';
+    }
+
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $url . http_build_query($params));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+    $response['response'] = curl_exec($ch);
+    $response['httpcode'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    curl_close($ch);
+
+    if ($response['httpcode'] == 200)
+        wp_send_json_success(['response' => $response['response']]);
+    else
+        wp_send_json_error(['response' => $response]);
+
+    wp_die();
+}
 
 
 
