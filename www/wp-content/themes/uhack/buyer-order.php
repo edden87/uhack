@@ -22,7 +22,7 @@ get_header();
         </div>
     </div>
 <?php
-    $args = ['post_type' => 'order', 'posts_per_page' => '-1'];
+    $args = ['post_type' => 'order', 'posts_per_page' => '-1', 'publish_type' => 'public'];
     $loop = new WP_Query($args);
 ?>
     <div class="row">

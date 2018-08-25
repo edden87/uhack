@@ -54,7 +54,7 @@ function uhack_scripts()
 
     // Pages
     wp_enqueue_script( 'company', get_stylesheet_directory_uri() . '/assets/pages/jquery.companies.js', ['jquery'], '0.2', 'true' );
-    wp_enqueue_script( 'form-advance', get_stylesheet_directory_uri() . '/assets/pages/jquery.form-advanced.init.js', ['jquery'], '0.1', 'true' );
+    wp_enqueue_script( 'form-advance', get_stylesheet_directory_uri() . '/assets/pages/jquery.form-advanced.init.js', ['jquery'], '0.3', 'true' );
 
     // Core
     wp_enqueue_style( 'custom', get_stylesheet_directory_uri() . '/assets/css/custom.css', ['main'], '', 'all' );
@@ -395,6 +395,44 @@ function order_action()
 
     wp_die();
 }
+
+add_action( 'wp_ajax_submit_order', 'submit_order' );
+add_action( 'wp_ajax_nopriv_submit_order', 'submit_order' );
+function submit_order()
+{
+    $post = $_REQUEST;
+
+    $meta_prefix = 'uhack-';
+
+    $args = [
+        'post_title' => $post['exampleInputTitle'],
+        'post_content' => $post['description'],
+        'meta_input' => [
+            $meta_prefix . 'buyer' => get_current_user_id(),
+            $meta_prefix . 'deliver_preference' => ['self-help', 'trusted-delivery'],
+            $meta_prefix . 'farmer_preference' => $post['farmer_preference'],
+            $meta_prefix . 'publish_type' => $post['publish_type'],
+            $meta_prefix . 'deadline' => $post['deadline'],
+            $meta_prefix . 'address_1' => $post['inputAddress'],
+            $meta_prefix . 'address_2' => $post['inputAddress2'],
+            $meta_prefix . 'city' => $post['inputCity'],
+            $meta_prefix . 'state' => $post['inputState'],
+            $meta_prefix . 'zip' => $post['inputZip'],
+            $meta_prefix . 'quantity' => $post['demo3'],
+            $meta_prefix . 'price_ratio' => $post['demo3_21'],
+            $meta_prefix . 'item' => $post['agriculture_type']
+        ],
+        'post_type' => 'order',
+        'post_status' => 'publish'
+    ];
+
+    $post_id = wp_insert_post($args);
+    wp_send_json_success(['id' => $post_id]);
+
+    wp_die();
+}
+
+update_post_meta(67, 'uhack-deliver_preference', ['self-help', 'trusted-delivery']);
 
 
 
