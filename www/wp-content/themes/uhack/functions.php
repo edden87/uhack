@@ -339,6 +339,15 @@ function order_metabox( $meta_boxes ) {
                     'trusted-delivery' => 'Trusted Delivery Partners',
                 ),
             ),
+            array(
+                'id' => $prefix . 'status',
+                'name' => esc_html__( 'Status', 'text-domain' ),
+                'type' => 'checkbox_list',
+                'options' => array(
+                    'approved' => 'Approved',
+                    'declined' => 'Declined',
+                ),
+            )
         ),
     );
 
