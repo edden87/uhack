@@ -210,20 +210,18 @@ function order_metabox( $meta_boxes ) {
                 'field_type' => 'select_advanced',
             ),
             array(
-                'id' => $prefix . 'deliver_reference',
-                'name' => esc_html__( 'Delivery Preference', 'text-domain' ),
-                'type' => 'select',
-                'placeholder' => esc_html__( 'Select an Item', 'text-domain' ),
+                'id' => $prefix . 'deliver_preference',
+                'name' => esc_html__( 'Deliver Preference', 'text-domain' ),
+                'type' => 'checkbox_list',
                 'options' => array(
-                    'self-help' => 'Self-help Delivery',
-                    'trusted-delivery' => 'Trusted Delivery Partners',
+                    'self-help' => 'Self-help',
+                    'trusted-delivery' => 'Trusted Delivery',
                 ),
             ),
             array(
                 'id' => $prefix . 'farmer_preference',
                 'name' => esc_html__( 'Farmer Preferences', 'text-domain' ),
-                'type' => 'select',
-                'placeholder' => esc_html__( 'Select an Item', 'text-domain' ),
+                'type' => 'checkbox_list',
                 'options' => array(
                     'multiple' => 'Allow multiple farmers to commit to an order',
                     'one' => 'One farmer will commit to the whole order.',
@@ -232,8 +230,7 @@ function order_metabox( $meta_boxes ) {
             array(
                 'id' => $prefix . 'publish_type',
                 'name' => esc_html__( 'Publish Type', 'text-domain' ),
-                'type' => 'select',
-                'placeholder' => esc_html__( 'Select an Item', 'text-domain' ),
+                'type' => 'checkbox_list',
                 'options' => array(
                     'anyone' => 'Anyone can bid',
                     'invite' => 'Invite only',
@@ -299,13 +296,48 @@ function order_metabox( $meta_boxes ) {
                 'id' => $prefix . 'assoc_order',
                 'type' => 'post',
                 'name' => esc_html__( 'Associated Order', 'text-domain' ),
-                'post_type' => 'order',
+                'post_type' => 'Order',
                 'field_type' => 'select_advanced',
             ),
             array(
                 'id' => $prefix . 'bidding_user_id',
                 'type' => 'text',
                 'name' => esc_html__( 'Bidding Farmer', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'address_1',
+                'type' => 'text',
+                'name' => esc_html__( 'Address', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'address_2',
+                'type' => 'text',
+                'name' => esc_html__( 'Address 2', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'city',
+                'type' => 'text',
+                'name' => esc_html__( 'City', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'state',
+                'type' => 'text',
+                'name' => esc_html__( 'State', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'zip',
+                'type' => 'text',
+                'name' => esc_html__( 'Zip', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'deliver_preference',
+                'name' => esc_html__( 'Delivery Preference', 'text-domain' ),
+                'type' => 'select',
+                'placeholder' => esc_html__( 'Select an Item', 'text-domain' ),
+                'options' => array(
+                    'self-help' => 'Self-help Delivery',
+                    'trusted-delivery' => 'Trusted Delivery Partners',
+                ),
             ),
         ),
     );
