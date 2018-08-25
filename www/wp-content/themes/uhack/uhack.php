@@ -2,6 +2,16 @@
 
 Class Uhack
 {
+	/* sandbox accounts:
+
+			un: nestor
+			pw: sandbox
+
+
+			un: nestor2
+			pw: sandbox2
+
+	*/
 
 	private $client_id 		= 'dd9586f0-0456-48a3-812c-47a6e9a1bd0f';
 
