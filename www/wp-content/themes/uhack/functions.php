@@ -221,7 +221,7 @@ function order_metabox( $meta_boxes ) {
             array(
                 'id' => $prefix . 'farmer_preference',
                 'name' => esc_html__( 'Farmer Preferences', 'text-domain' ),
-                'type' => 'checkbox_list',
+                'type' => 'radio',
                 'options' => array(
                     'multiple' => 'Allow multiple farmers to commit to an order',
                     'one' => 'One farmer will commit to the whole order.',
@@ -230,7 +230,7 @@ function order_metabox( $meta_boxes ) {
             array(
                 'id' => $prefix . 'publish_type',
                 'name' => esc_html__( 'Publish Type', 'text-domain' ),
-                'type' => 'checkbox_list',
+                'type' => 'radio',
                 'options' => array(
                     'anyone' => 'Anyone can bid',
                     'invite' => 'Invite only',
@@ -275,6 +275,19 @@ function order_metabox( $meta_boxes ) {
                 'id' => $prefix . 'price_ratio',
                 'type' => 'text',
                 'name' => esc_html__( 'Price Ratio', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'item',
+                'name' => esc_html__( 'Item', 'text-domain' ),
+                'type' => 'select',
+                'placeholder' => esc_html__( 'Select an Item', 'text-domain' ),
+                'options' => array(
+                    '7-tonner' => '7 Tonner',
+                    'jasmin' => 'Jasmin',
+                    'brown' => 'Brown',
+                    'nfa' => 'NFA',
+                    'sinandomeng' => 'Sinandomeng',
+                ),
             ),
         ),
     );

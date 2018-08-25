@@ -9,7 +9,7 @@ get_header();
     <div class="row">
         <div class="col-sm-8 center-page">
             <div class="page-title-box">
-                <h4 class="page-title">New Order</h4>
+                <h4 class="page-title"><a href="/buyers-order/">Home</a> / New Order</h4>
             </div>
         </div>
     </div>
@@ -27,11 +27,11 @@ get_header();
                     <select id="exampleDemand2" class="form-control select2">
                         <option>Select</option>
                         <optgroup label="Rice">
-                            <option value="7-tonner">7 Tonner</option>
-                            <option value="jasmin">Jasmin</option>
-                            <option value="brown">Brown</option>
-                            <option value="nfa">NFA</option>
-                            <option value="sinandomeng">Sinandomeng</option>
+                                <option value="7-tonner">7 Tonner</option>
+                                <option value="jasmin">Jasmin</option>
+                                <option value="brown">Brown</option>
+                                <option value="nfa">NFA</option>
+                                <option value="sinandomeng">Sinandomeng</option>
                         </optgroup>
                     </select>
                 </div>
