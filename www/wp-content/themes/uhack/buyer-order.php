@@ -11,7 +11,7 @@ get_header();
                 <h4 class="page-title">Orders</h4>
             </div>
         </div>
-    </div>z
+    </div>
     <!-- end page title end breadcrumb -->
 
     <div class="row">
