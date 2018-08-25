@@ -436,7 +436,6 @@ add_action( 'wp_ajax_submit_sms', 'submit_sms' );
 add_action( 'wp_ajax_nopriv_submit_sms', 'submit_sms' );
 function submit_sms() {
     $url = 'https://rest.nexmo.com/sms/json?';
-    $header = [];
     $params = [
             'api_key' => '1b725766',
             'api_secret' => 'd501d8d77cf1cbb5',
@@ -460,9 +459,29 @@ function submit_sms() {
     curl_close($ch);
 
     if ($response['httpcode'] == 200)
+    {
         wp_send_json_success(['response' => $response['response']]);
+        update_option('notify_farmer', true);
+    }
     else
         wp_send_json_error(['response' => $response]);
+
+    wp_die();
+}
+
+add_action( 'wp_ajax_notify_farmer', 'notify_farmer' );
+add_action( 'wp_ajax_nopriv_notify_farmer', 'notify_farmer' );
+function notify_farmer()
+{
+    $notify = get_option('notify_farmer');
+
+    if ($notify == true)
+    {
+        delete_option('notify_farmer');
+        wp_send_json_success();
+    }
+    else
+        wp_send_json_error();
 
     wp_die();
 }
