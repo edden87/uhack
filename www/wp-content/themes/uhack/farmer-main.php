@@ -27,7 +27,7 @@ get_header();
                 </p>
 
                 <div class="text-center">
-                    <a href="javascript:void(0);" class="btn btn-sm btn-success">Make an Offer</a> <a href="javascript:void(0);" class="btn btn-sm btn-light">Decline</a>
+                    <a href="/farmers-bid/" class="btn btn-sm btn-success">Make an Offer</a> <a href="javascript:void(0);" class="btn btn-sm btn-light">Decline</a>
                 </div>
                 <hr>
                 <div class="text-center">
@@ -49,7 +49,7 @@ get_header();
                 </p>
 
                 <div class="text-center">
-                    <a href="javascript:void(0);" class="btn btn-sm btn-success">Make an Offer</a> <a href="javascript:void(0);" class="btn btn-sm btn-light">Decline</a>
+                    <a href="/farmers-bid/" class="btn btn-sm btn-success">Make an Offer</a> <a href="javascript:void(0);" class="btn btn-sm btn-light">Decline</a>
                 </div>
                 <hr>
                 <div class="text-center">
@@ -71,7 +71,7 @@ get_header();
                 </p>
 
                 <div class="text-center">
-                    <a href="javascript:void(0);" class="btn btn-sm btn-success">Make an Offer</a>
+                    <a href="/farmers-bid/" class="btn btn-sm btn-success">Make an Offer</a>
                 </div>
                 <hr>
                 <div class="text-center">

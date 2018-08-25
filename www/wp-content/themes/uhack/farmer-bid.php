@@ -18,6 +18,15 @@ get_header();
         <div class="col-sm-8 center-page">
             <form role="form">
                 <div class="form-group">
+                    <p class="text-center"><strong>ORDER REQUEST</strong></p>
+                    <h4 class="text-center"><strong>7 Tonner</strong></h4>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label class="control-label"><b>Enter Price</b></label>
+                    <input id="demo3_21" type="text" value="1" name="demo3_21" class=" form-control" data-bts-max="100000">
+                </div>
+                <div class="form-group">
                     <label for="range_03" class="control-label"><b>Enter committed qty.</b></label>
                     <div class="m-b-20">
                         <input type="text" id="range_03">
@@ -75,7 +84,7 @@ get_header();
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-success waves-effect waves-light btn-block">Post Bid</button>
+                        <button type="button" class="btn btn-success waves-effect waves-light btn-block" id="post-bid">Post Bid</button>
                         <button type="button" class="btn btn-default waves-effect waves-light btn-block">Cancel</button>
                         <br>
                         <br>
@@ -84,4 +93,29 @@ get_header();
             </form>
         </div><!-- end col-->
     </div>
+    <script>
+        jQuery(document).ready(function($) {
+            $('#post-bid').click(function() {
+                swal(
+                    {
+                        title: 'Bid Submitted!',
+                        text: 'Redirecting in 2 seconds...',
+                        type: 'success',
+                        timer: 2000,
+                        showCancelButton: false,
+                        showConfirmButton: false
+                    }
+                ).then(
+                    function() {
+                    },
+                    function (dismiss) {
+                        if ( dismiss === 'timer' )
+                        {
+                            window.location.replace("/farmers-main/");
+                        }
+                    }
+                )
+            })
+        });
+    </script>
 <?php get_footer();
