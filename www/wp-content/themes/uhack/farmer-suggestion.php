@@ -6,7 +6,8 @@ get_header();
 ?>
     <div class="row">
         <div class="col-md-10 center-page m-t-40 center-page">
-            <h3>We found farmers base from your Job Order! <button type="button" class="btn btn-success waves-effect waves-light">Send them an invite</button> <button type="button" class="btn btn-default waves-effect waves-light">No Thanks!</button></h3>
+            <h3>We found farmers base from your Job Order! </h3>
+            <button type="button" class="btn btn-success waves-effect waves-light">Send them an invite</button> <button type="button" class="btn btn-default waves-effect waves-light">No Thanks!</button>
             <hr>
             <div class="row">
                 <div class="col-md-4">
