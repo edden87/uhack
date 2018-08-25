@@ -17,7 +17,12 @@ get_header();
 
     <div class="row">
         <div class="col-sm-8 center-page">
-            <form role="form">
+            <?php
+            echo '<pre>';
+            print_r($_REQUEST);
+            echo '</pre>';
+            ?>
+            <form role="form" method="post">
                 <div class="form-group">
                     <label for="exampleInputTitle">Name of your Job Order</label>
                     <input type="text" class="form-control" id="exampleInputTitle" aria-describedby="titleHelp" placeholder="Order Title">
@@ -151,7 +156,7 @@ get_header();
                         <p>Order Description (Optional):</p>
                         <textarea class="form-control" rows="5"></textarea>
                         <br>
-                        <button type="button" class="btn btn-success waves-effect waves-light">Post Order</button>
+                        <button type="submit" class="btn btn-success waves-effect waves-light">Post Order</button>
                         <button type="button" class="btn btn-default waves-effect waves-light">Cancel</button>
                         <br>
                         <br>

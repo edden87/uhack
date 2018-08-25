@@ -31,6 +31,7 @@ function uhack_scripts()
     wp_enqueue_style( 'ion-rangeslider-skinFlat', get_stylesheet_directory_uri() . '/plugins/ion-rangeslider/ion.rangeSlider.skinFlat.css', ['main'], '', 'all' );
     wp_enqueue_style( 'slick', get_stylesheet_directory_uri() . '/plugins/slick/slick.css', ['main'], '', 'all' );
     wp_enqueue_style( 'slick-theme', get_stylesheet_directory_uri() . '/plugins/slick/slick-theme.css', ['main'], '', 'all' );
+    wp_enqueue_style( 'sweet-alert', get_stylesheet_directory_uri() . '/plugins/sweet-alert/sweetalert2.min.css', ['main'], '', 'all' );
 
     wp_enqueue_script( 'switchery', get_stylesheet_directory_uri() . '/plugins/switchery/switchery.min.js', ['jquery'], '', 'true' );
     wp_enqueue_script( 'bootstrap-tagsinput', get_stylesheet_directory_uri() . '/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js', ['jquery'], '', 'true' );
@@ -49,6 +50,7 @@ function uhack_scripts()
     wp_enqueue_script( 'ion-slider', get_stylesheet_directory_uri() . '/plugins/ion-rangeslider/ion.rangeSlider.min.js', ['jquery'], '', 'true' );
     wp_enqueue_script( 'jquery-sliders', get_stylesheet_directory_uri() . '/assets/pages/jquery.ui-sliders.js', ['jquery'], '0.1', 'true' );
     wp_enqueue_script( 'slick', get_stylesheet_directory_uri() . '/plugins/slick/slick.js', ['jquery'], '', 'true' );
+    wp_enqueue_script( 'sweet-alert', get_stylesheet_directory_uri() . '/plugins/sweet-alert/sweetalert2.min.js', ['jquery'], '', 'true' );
 
     // Pages
     wp_enqueue_script( 'company', get_stylesheet_directory_uri() . '/assets/pages/jquery.companies.js', ['jquery'], '0.2', 'true' );
@@ -355,7 +357,7 @@ function order_metabox( $meta_boxes ) {
             array(
                 'id' => $prefix . 'status',
                 'name' => esc_html__( 'Status', 'text-domain' ),
-                'type' => 'checkbox_list',
+                'type' => 'radio',
                 'options' => array(
                     'approved' => 'Approved',
                     'declined' => 'Declined',
@@ -367,5 +369,19 @@ function order_metabox( $meta_boxes ) {
     return $meta_boxes;
 }
 add_filter( 'rwmb_meta_boxes', 'order_metabox' );
+
+add_action( 'wp_ajax_order_action', 'order_action' );
+add_action( 'wp_ajax_nopriv_order_action', 'order_action' );
+function order_action()
+{
+    $bid_id = $_REQUEST['order_id'];
+    $bid_value = $_REQUEST['bid_action'];
+
+//    update_post_meta($bid_id, 'uhack-status', $bid_value);
+    wp_send_json_success();
+
+    wp_die();
+}
+
 
 

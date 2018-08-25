@@ -129,8 +129,8 @@ get_header();
                                 <?php elseif ( get_post_meta(get_the_ID(), 'uhack-status', true) == 'declined' ) : ?>
                                     <p class="text-center"><i class="fa fa-times-circle"></i> Declined</p>
                                 <?php else : ?>
-                                    <p><button type="button" class="btn btn-success waves-effect waves-light btn-block">Approve</button></p>
-                                    <p><button type="button" class="btn btn-default waves-effect waves-light btn-block">Declined</button></p>
+                                    <p><button type="button" class="btn btn-success waves-effect waves-light btn-block approved" data-id="<?= get_the_ID() ?>" data-action="approved">Approve</button></p>
+                                    <p><button type="button" class="btn btn-default waves-effect waves-light btn-block declined" data-id="<?= get_the_ID() ?>" data-action="declined">Declined</button></p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -144,6 +144,31 @@ get_header();
     <script>
         jQuery(document).ready(function($) {
             $('.slick-slider').slick();
+
+            $('button.approved, button.declined').click(function() {
+                console.log($(this).attr('data-id'));
+                var ajaxurl = '<?= admin_url('admin-ajax.php') ?>'
+                var $data = {
+                    'action' : 'order_action',
+                    'bid_id' : $(this).attr('data-id'),
+                    'bid_action' : $(this).attr('data-action')
+                }
+                $.post(ajaxurl, $data, function(e) {
+                    if (e.success == true)
+                    {
+                        swal(
+                            {
+                                title: 'Updated!',
+                                text: 'Refresing in 2 seconds',
+                                type: 'success',
+                                showCancelButton: false,
+                                showConfirmButton: false
+                            }
+                        )
+                    }
+                })
+
+            })
         });
     </script>
 <?php get_footer();
