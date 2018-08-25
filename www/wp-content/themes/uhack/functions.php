@@ -95,3 +95,223 @@ function chatbox()
     <?php
 }
 
+add_action( 'init', 'uhack_register_post_types' );
+function uhack_register_post_types()
+{
+    register_post_type( 'Order', [
+                                   'description'          => '',
+                                   'labels'               => [
+                                       'name'               => _x( 'Orders', 'post type general name', 'text-domain' ),
+                                       'singular_name'      => _x( 'Order', 'post type singular name', 'text-domain' ),
+                                       'menu_name'          => _x( 'Orders', 'admin menu', 'text-domain' ),
+                                       'name_admin_bar'     => _x( 'Order', 'add new Order on admin bar', 'text-domain' ),
+                                       'add_new'            => _x( 'Add New', 'post_type', 'text-domain' ),
+                                       'add_new_item'       => __( 'Add New Order', 'text-domain' ),
+                                       'edit_item'          => __( 'Edit Order', 'text-domain' ),
+                                       'new_item'           => __( 'New Order', 'text-domain' ),
+                                       'view_item'          => __( 'View Order', 'text-domain' ),
+                                       'search_items'       => __( 'Search Orders', 'text-domain' ),
+                                       'not_found'          => __( 'No orders found.', 'text-domain' ),
+                                       'not_found_in_trash' => __( 'No orders found in Trash.', 'text-domain' ),
+                                       'parent_item_colon'  => __( 'Parent Order:', 'text-domain' ),
+                                       'all_items'          => __( 'All Orders', 'text-domain' ),
+                                   ],
+                                   'public'               => false,
+                                   'hierarchical'         => false,
+                                   'exclude_from_search'  => true,
+                                   'publicly_queryable'   => false,
+                                   'show_ui'              => true,
+                                   'show_in_menu'         => true,
+                                   'show_in_nav_menus'    => false,
+                                   'show_in_admin_bar'    => false,
+                                   'menu_position'        => 80,
+                                   'menu_icon'            => null,
+                                   'capability_type'      => 'post',
+                                   'capabilities'         => [],
+                                   'map_meta_cap'         => null,
+                                   'supports'             => ['title', 'editor'],
+                                   'register_meta_box_cb' => null,
+                                   'taxonomies'           => [],
+                                   'has_archive'          => false,
+                                   'rewrite'              => [
+                                       'slug'       => 'Order',
+                                       'with_front' => false,
+                                       'feeds'      => false,
+                                       'pages'      => true,
+                                   ],
+                                   'query_var'            => true,
+                                   'can_export'           => true,
+                               ]
+    );
+
+    register_post_type( 'bids', [
+                                  'description'          => '',
+                                  'labels'               => [
+                                      'name'               => _x( 'Bids', 'post type general name', 'text-domain' ),
+                                      'singular_name'      => _x( 'Bid', 'post type singular name', 'text-domain' ),
+                                      'menu_name'          => _x( 'Bids', 'admin menu', 'text-domain' ),
+                                      'name_admin_bar'     => _x( 'Bid', 'add new bids on admin bar', 'text-domain' ),
+                                      'add_new'            => _x( 'Add New', 'post_type', 'text-domain' ),
+                                      'add_new_item'       => __( 'Add New Bid', 'text-domain' ),
+                                      'edit_item'          => __( 'Edit Bid', 'text-domain' ),
+                                      'new_item'           => __( 'New Bid', 'text-domain' ),
+                                      'view_item'          => __( 'View Bid', 'text-domain' ),
+                                      'search_items'       => __( 'Search Bids', 'text-domain' ),
+                                      'not_found'          => __( 'No bids found.', 'text-domain' ),
+                                      'not_found_in_trash' => __( 'No bids found in Trash.', 'text-domain' ),
+                                      'parent_item_colon'  => __( 'Parent Bid:', 'text-domain' ),
+                                      'all_items'          => __( 'All Bids', 'text-domain' ),
+                                  ],
+                                  'public'               => false,
+                                  'hierarchical'         => false,
+                                  'exclude_from_search'  => true,
+                                  'publicly_queryable'   => false,
+                                  'show_ui'              => true,
+                                  'show_in_menu'         => true,
+                                  'show_in_nav_menus'    => false,
+                                  'show_in_admin_bar'    => false,
+                                  'menu_position'        => 80,
+                                  'menu_icon'            => null,
+                                  'capability_type'      => 'post',
+                                  'capabilities'         => [],
+                                  'map_meta_cap'         => null,
+                                  'supports'             => ['title', 'editor', 'comments'],
+                                  'register_meta_box_cb' => null,
+                                  'taxonomies'           => [],
+                                  'has_archive'          => false,
+                                  'rewrite'              => [
+                                      'slug'       => 'bids',
+                                      'with_front' => false,
+                                      'feeds'      => false,
+                                      'pages'      => true,
+                                  ],
+                                  'query_var'            => true,
+                                  'can_export'           => true,
+                              ]
+    );
+
+}
+
+function order_metabox( $meta_boxes ) {
+    $prefix = 'uhack-';
+
+    $meta_boxes[] = array(
+        'id' => 'uhack_order',
+        'title' => esc_html__( 'Order Meta', 'text-domain' ),
+        'post_types' => array( 'order' ),
+        'context' => 'advanced',
+        'priority' => 'default',
+        'autosave' => false,
+        'fields' => array(
+            array(
+                'id' => $prefix . 'buyer',
+                'type' => 'user',
+                'name' => esc_html__( 'Buyer', 'text-domain' ),
+                'field_type' => 'select_advanced',
+            ),
+            array(
+                'id' => $prefix . 'deliver_reference',
+                'name' => esc_html__( 'Delivery Preference', 'text-domain' ),
+                'type' => 'select',
+                'placeholder' => esc_html__( 'Select an Item', 'text-domain' ),
+                'options' => array(
+                    'self-help' => 'Self-help Delivery',
+                    'trusted-delivery' => 'Trusted Delivery Partners',
+                ),
+            ),
+            array(
+                'id' => $prefix . 'farmer_preference',
+                'name' => esc_html__( 'Farmer Preferences', 'text-domain' ),
+                'type' => 'select',
+                'placeholder' => esc_html__( 'Select an Item', 'text-domain' ),
+                'options' => array(
+                    'multiple' => 'Allow multiple farmers to commit to an order',
+                    'one' => 'One farmer will commit to the whole order.',
+                ),
+            ),
+            array(
+                'id' => $prefix . 'publish_type',
+                'name' => esc_html__( 'Publish Type', 'text-domain' ),
+                'type' => 'select',
+                'placeholder' => esc_html__( 'Select an Item', 'text-domain' ),
+                'options' => array(
+                    'anyone' => 'Anyone can bid',
+                    'invite' => 'Invite only',
+                ),
+            ),
+            array(
+                'id' => $prefix . 'address_1',
+                'type' => 'text',
+                'name' => esc_html__( 'Address', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'address_2',
+                'type' => 'text',
+                'name' => esc_html__( 'Address 2', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'city',
+                'type' => 'text',
+                'name' => esc_html__( 'City', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'state',
+                'type' => 'text',
+                'name' => esc_html__( 'State', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'zip',
+                'type' => 'text',
+                'name' => esc_html__( 'Zip', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'deadline',
+                'type' => 'text',
+                'name' => esc_html__( 'Estimated Deadline', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'quantity',
+                'type' => 'text',
+                'name' => esc_html__( 'Quantity', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'price_ratio',
+                'type' => 'text',
+                'name' => esc_html__( 'Price Ratio', 'text-domain' ),
+            ),
+        ),
+    );
+
+    $meta_boxes[] = array(
+        'id' => 'uhack_bids',
+        'title' => esc_html__( 'Bids Meta', 'text-domain' ),
+        'post_types' => array( 'bids' ),
+        'context' => 'advanced',
+        'priority' => 'default',
+        'autosave' => false,
+        'fields' => array(
+            array(
+                'id' => $prefix . 'commited_qty',
+                'type' => 'text',
+                'name' => esc_html__( 'Commited Qty.', 'text-domain' ),
+            ),
+            array(
+                'id' => $prefix . 'assoc_order',
+                'type' => 'post',
+                'name' => esc_html__( 'Associated Order', 'text-domain' ),
+                'post_type' => 'order',
+                'field_type' => 'select_advanced',
+            ),
+            array(
+                'id' => $prefix . 'bidding_user_id',
+                'type' => 'text',
+                'name' => esc_html__( 'Bidding Farmer', 'text-domain' ),
+            ),
+        ),
+    );
+
+    return $meta_boxes;
+}
+add_filter( 'rwmb_meta_boxes', 'order_metabox' );
+
+
