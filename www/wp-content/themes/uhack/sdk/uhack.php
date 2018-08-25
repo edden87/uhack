@@ -2,6 +2,12 @@
 
 Class Uhack
 {
+	/* Developer Acc
+		
+			un : ratillanestorjr@gmail.com
+			pw : Uh@ck12345
+
+	*/
 	/* sandbox accounts:
 
 			un: nestor
@@ -120,7 +126,7 @@ Class Uhack
 
 	}
 
-	public function transfer_fund($token)
+	public function transfer_fund($token, $amount = 4000)
 	{
 		/***Token Scope type :
 		*
@@ -148,7 +154,7 @@ Class Uhack
 				    "accountNo":"100614394826",
 				    "amount": {
 				      "currency":"PHP",
-				      "value":"4000"
+				      "value":"'.$amount.'"
 				    },
 				    "remarks":"Transfer remarks",
 				    "particulars":"Transfer particulars",
