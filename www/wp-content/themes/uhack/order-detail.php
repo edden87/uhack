@@ -23,8 +23,10 @@ get_header();
             'post_type'      => 'bids',
             'posts_per_page' => -1,
             'meta_query'     => [
-                'key'   => 'uhack-assoc_order',
-                'value' => $order_id
+                [
+                    'key'   => 'uhack-assoc_order',
+                    'value' => $order_id
+                ]
             ]
         ];
         $order_list = new WP_Query( $args );
@@ -53,19 +55,11 @@ get_header();
 
     </div>
 <hr>
+<?php if (have_posts( $order_list )) :?>
     <div class="slick-slider">
         <?php
-        $args = [
-            'post_type'      => 'bids',
-            'posts_per_page' => -1,
-            'meta_query'     => [
-                'key'   => 'uhack-assoc_order',
-                'value' => $order_id
-            ]
-        ];
-        $order_list = new WP_Query( $args );
 
-        while ($order_list->have_posts()) : $order_list->the_post();
+            while ($order_list->have_posts()) : $order_list->the_post();
             $user = get_user_by( 'ID', get_post_meta(get_the_ID(), 'uhack-bidding_user_id', true) );
         ?>
             <div class="portlet">
@@ -145,6 +139,8 @@ get_header();
             </div>
         <?php endwhile; ?>
     </div>
+<?php endif; ?>
+
     <script>
         jQuery(document).ready(function($) {
             $('.slick-slider').slick();
