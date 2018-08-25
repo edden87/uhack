@@ -115,23 +115,25 @@ get_header();
                                 <p class="text-center">
                                     <?= $address_1 ?> <?= $address_2; ?> <?=  $city; ?> <?=  $state; ?> <?= $zip; ?>
                                 </p>
-                                <?php
-                                if ( get_post_meta(get_the_ID(), 'uhack-status', true) == 'approved') :
-                                    if ( get_post_meta(get_the_ID(), 'uhack-deliver_preference', true) == 'self-help')
-                                    {
-                                        $message_string = '<a href="/direct-response-chatbox/?chat_id='.get_the_ID().'" class="btn btn-success waves-effect waves-light btn-block"><i class="ion-chatbox"></i> Message</a>';
-                                    } else {
-                                        $message_string = '<a href="/delivery-partner/" class="btn btn-success waves-effect waves-light btn-block"><i class="ion-map">See Timeline</a>';
-                                    }
-                                ?>
-                                    <p class="text-center"><i class="fa fa-check-circle"></i> Approved</p>
-                                    <?= $message_string ?>
-                                <?php elseif ( get_post_meta(get_the_ID(), 'uhack-status', true) == 'declined' ) : ?>
-                                    <p class="text-center"><i class="fa fa-times-circle"></i> Declined</p>
-                                <?php else : ?>
-                                    <p><button type="button" class="btn btn-success waves-effect waves-light btn-block approved" data-id="<?= get_the_ID() ?>" data-action="approved">Approve</button></p>
-                                    <p><button type="button" class="btn btn-default waves-effect waves-light btn-block declined" data-id="<?= get_the_ID() ?>" data-action="declined">Declined</button></p>
-                                <?php endif; ?>
+                                <div class="bidder-status-wrapper">
+                                    <?php
+                                    if ( get_post_meta(get_the_ID(), 'uhack-status', true) == 'approved') :
+                                        if ( get_post_meta(get_the_ID(), 'uhack-deliver_preference', true) == 'self-help')
+                                        {
+                                            $message_string = '<a href="/direct-response-chatbox/?chat_id='.get_the_ID().'" class="btn btn-success waves-effect waves-light btn-block"><i class="ion-chatbox"></i> Message</a>';
+                                        } else {
+                                            $message_string = '<a href="/delivery-partner/" class="btn btn-success waves-effect waves-light btn-block"><i class="ion-map"></i> See Timeline</a>';
+                                        }
+                                    ?>
+                                        <p class="text-center"><i class="fa fa-check-circle"></i> Approved</p>
+                                        <?= $message_string ?>
+                                    <?php elseif ( get_post_meta(get_the_ID(), 'uhack-status', true) == 'declined' ) : ?>
+                                        <p class="text-center"><i class="fa fa-times-circle"></i> Declined</p>
+                                    <?php else : ?>
+                                        <p><button type="button" class="btn btn-success waves-effect waves-light btn-block approved" data-delivery="<?= get_post_meta(get_the_ID(), 'uhack-deliver_preference', true)  ?>" data-id="<?= get_the_ID() ?>" data-action="approved">Approve</button></p>
+                                        <p><button type="button" class="btn btn-default waves-effect waves-light btn-block declined" data-delivery="<?= get_post_meta(get_the_ID(), 'uhack-deliver_preference', true)  ?>" data-id="<?= get_the_ID() ?>" data-action="declined">Declined</button></p>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -146,12 +148,12 @@ get_header();
             $('.slick-slider').slick();
 
             $('button.approved, button.declined').click(function() {
-                console.log($(this).attr('data-id'));
                 var ajaxurl = '<?= admin_url('admin-ajax.php') ?>'
                 var $data = {
                     'action' : 'order_action',
-                    'bid_id' : $(this).attr('data-id'),
-                    'bid_action' : $(this).attr('data-action')
+                    'order_id' : $(this).attr('data-id'),
+                    'bid_action' : $(this).attr('data-action'),
+                    'delivery_type' : $(this).attr('data-delivery')
                 }
                 $.post(ajaxurl, $data, function(e) {
                     if (e.success == true)
@@ -159,10 +161,38 @@ get_header();
                         swal(
                             {
                                 title: 'Updated!',
-                                text: 'Refresing in 2 seconds',
+                                text: 'Refresing in 2 seconds...',
                                 type: 'success',
+                                timer: 2000,
                                 showCancelButton: false,
                                 showConfirmButton: false
+                            }
+                        ).then(
+                            function () {
+                            },
+                            // handling the promise rejection
+                            function (dismiss) {
+                                if (dismiss === 'timer') {
+                                    console.log(e.data.action);
+                                    if (e.data.action === 'approved')
+                                    {
+                                        $messege = '<p class="text-center"><i class="fa fa-check-circle"></i> Approved</p>';
+                                        if (e.data.delivery_type === 'self-help')
+                                        {
+                                            $message = '<a href="/direct-response-chatbox/?chat_id='+e.data.bid_id+'" class="btn btn-success waves-effect waves-light btn-block"><i class="ion-chatbox"></i> Message</a>';
+                                        }
+                                        else {
+                                            $message = '<a href="/delivery-partner/" class="btn btn-success waves-effect waves-light btn-block"><i class="ion-map"></i> See Timeline</a>';
+                                        }
+                                        $('.bidder-status-wrapper').html('<p class="text-center"><i class="fa fa-check-circle"></i> Approved</p>' + $message);
+                                    }
+                                    else
+                                    {
+                                        $message = '<p class="text-center"><i class="fa fa-times-circle"></i> Declined</p>'
+                                        $('.bidder-status-wrapper').html($message);
+                                    }
+
+                                }
                             }
                         )
                     }
