@@ -12,59 +12,119 @@ get_header();
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-8 center-page">
-            <div class="portlet">
-                <div class="portlet-heading portlet-default">
-                    <h3 class="portlet-title text-dark">
-                        Farmer 1
-                    </h3>
-                    <div class="portlet-widgets">
-                        <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
-                        <span class="divider"></span>
-                        <a data-toggle="collapse" href="#bg-default"><i class="ion-minus-round"></i></a>
-                        <span class="divider"></span>
-                        <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
-                    </div>
-                    <div class="clearfix"></div>
+    <p><strong>Order's filled (43%)</strong></p>
+    <div class="progress m-b-20">
+        <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+<hr>
+    <div class="slick-slider">
+        <div class="portlet">
+            <div class="portlet-heading portlet-default">
+                <h3 class="portlet-title text-dark">
+                    Farmer 1
+                </h3>
+                <div class="portlet-widgets">
+                    <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                    <span class="divider"></span>
+                    <a data-toggle="collapse" href="#bg-default"><i class="ion-minus-round"></i></a>
+                    <span class="divider"></span>
+                    <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
                 </div>
-                <div id="bg-default" class="panel-collapse collapse show">
-                    <div class="portlet-body">
-                        <div class="text-center">
-                            <img src="http://localhost:81/wp-content/themes/uhack/assets/images/avatar-1.jpg" alt="logo" class="thumb-lg rounded-circle mb-3">
-                            <p class="text-center">
-                                <a href="javascript:void(0);" class="btn btn-sm btn-light">View Profile</a>
-                            </p>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="text-center text-success">
-                                    <p>
-                                        <b>Quantity</b>
-                                    </p>
-                                    <h4>512kg</h4>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="text-center text-info">
-                                    <p>
-                                        <strong>Delivery Type</strong>
-                                    </p>
-                                    <p><i class="fa fa-location-arrow"></i> Self-help</p>
-                                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="bg-default" class="panel-collapse collapse show">
+                <div class="portlet-body">
+                    <div class="text-center">
+                        <img src="http://localhost:81/wp-content/themes/uhack/assets/images/avatar-1.jpg" alt="logo" class="thumb-lg rounded-circle mb-3">
+                        <p class="text-center">
+                            <a href="javascript:void(0);" class="btn btn-sm btn-light">View Profile</a>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center text-success">
+                                <p>
+                                    <b>Quantity</b>
+                                </p>
+                                <h4>512kg</h4>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <h4 class="text-center text-danger"><i class="mdi mdi-account-location"></i></h4>
-                                <p class="text-center">Sitio Katandungan, Marilog District, Davao City, 8000 Cotabato</p>
-                                <p><button type="button" class="btn btn-success waves-effect waves-light btn-block">Approve</button></p>
-                                <p><button type="button" class="btn btn-default waves-effect waves-light btn-block">Declined</button></p>
+                        <div class="col-6">
+                            <div class="text-center text-info">
+                                <p>
+                                    <strong>Delivery Type</strong>
+                                </p>
+                                <p><i class="fa fa-location-arrow"></i> Self-help</p>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="text-center text-danger"><i class="mdi mdi-account-location"></i></h4>
+                            <p class="text-center">Sitio Katandungan, Marilog District, Davao City, 8000 Cotabato</p>
+                            <p><button type="button" class="btn btn-success waves-effect waves-light btn-block">Approve</button></p>
+                            <p><button type="button" class="btn btn-default waves-effect waves-light btn-block">Declined</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portlet">
+            <div class="portlet-heading portlet-default">
+                <h3 class="portlet-title text-dark">
+                    Farmer 1
+                </h3>
+                <div class="portlet-widgets">
+                    <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                    <span class="divider"></span>
+                    <a data-toggle="collapse" href="#bg-default"><i class="ion-minus-round"></i></a>
+                    <span class="divider"></span>
+                    <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="bg-default" class="panel-collapse collapse show">
+                <div class="portlet-body">
+                    <div class="text-center">
+                        <img src="http://localhost:81/wp-content/themes/uhack/assets/images/avatar-1.jpg" alt="logo" class="thumb-lg rounded-circle mb-3">
+                        <p class="text-center">
+                            <a href="javascript:void(0);" class="btn btn-sm btn-light">View Profile</a>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center text-success">
+                                <p>
+                                    <b>Quantity</b>
+                                </p>
+                                <h4>512kg</h4>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center text-info">
+                                <p>
+                                    <strong>Delivery Type</strong>
+                                </p>
+                                <p><i class="fa fa-location-arrow"></i> Self-help</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="text-center text-danger"><i class="mdi mdi-account-location"></i></h4>
+                            <p class="text-center">Sitio Katandungan, Marilog District, Davao City, 8000 Cotabato</p>
+                            <p><button type="button" class="btn btn-success waves-effect waves-light btn-block">Approve</button></p>
+                            <p><button type="button" class="btn btn-default waves-effect waves-light btn-block">Declined</button></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        jQuery(document).ready(function($) {
+            $('.slick-slider').slick();
+        });
+    </script>
 <?php get_footer();
