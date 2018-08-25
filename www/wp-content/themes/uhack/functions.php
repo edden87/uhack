@@ -29,6 +29,8 @@ function uhack_scripts()
     wp_enqueue_style( 'bootstrap-daterangepicker', get_stylesheet_directory_uri() . '/plugins/bootstrap-daterangepicker/daterangepicker.css', ['main'], '', 'all' );
     wp_enqueue_style( 'ion-rangeslider', get_stylesheet_directory_uri() . '/plugins/ion-rangeslider/ion.rangeSlider.css', ['main'], '', 'all' );
     wp_enqueue_style( 'ion-rangeslider-skinFlat', get_stylesheet_directory_uri() . '/plugins/ion-rangeslider/ion.rangeSlider.skinFlat.css', ['main'], '', 'all' );
+    wp_enqueue_style( 'slick', get_stylesheet_directory_uri() . '/plugins/slick/slick.css', ['main'], '', 'all' );
+    wp_enqueue_style( 'slick-theme', get_stylesheet_directory_uri() . '/plugins/slick/slick-theme.css', ['main'], '', 'all' );
 
     wp_enqueue_script( 'switchery', get_stylesheet_directory_uri() . '/plugins/switchery/switchery.min.js', ['jquery'], '', 'true' );
     wp_enqueue_script( 'bootstrap-tagsinput', get_stylesheet_directory_uri() . '/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js', ['jquery'], '', 'true' );
@@ -46,6 +48,7 @@ function uhack_scripts()
     wp_enqueue_script( 'custombox', get_stylesheet_directory_uri() . '/plugins/custombox/dist/custombox.min.js', ['jquery'], '', 'true' );
     wp_enqueue_script( 'ion-slider', get_stylesheet_directory_uri() . '/plugins/ion-rangeslider/ion.rangeSlider.min.js', ['jquery'], '', 'true' );
     wp_enqueue_script( 'jquery-sliders', get_stylesheet_directory_uri() . '/assets/pages/jquery.ui-sliders.js', ['jquery'], '0.1', 'true' );
+    wp_enqueue_script( 'slick', get_stylesheet_directory_uri() . '/plugins/slick/slick.js', ['jquery'], '', 'true' );
 
     // Pages
     wp_enqueue_script( 'company', get_stylesheet_directory_uri() . '/assets/pages/jquery.companies.js', ['jquery'], '0.2', 'true' );

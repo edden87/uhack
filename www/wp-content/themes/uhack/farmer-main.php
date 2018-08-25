@@ -14,7 +14,7 @@ get_header();
         </div>
     </div>
     <!-- end page title end breadcrumb -->
-    <div class="row">
+    <div class="slick-slider">
         <div class="col-md-4">
             <div class="card-box">
                 <span class="badge badge-success"><i class=" mdi mdi-account-check"></i> You are invited!</span> <span class="badge badge-light"><i class=" mdi mdi-account-multiple"></i> Multi-farmer application</span>
@@ -61,4 +61,9 @@ get_header();
         </div><!-- end col -->
     </div>
     <!-- end row -->
+<script>
+    jQuery(document).ready(function($) {
+        $('.slick-slider').slick();
+    });
+</script>
 <?php get_footer();
