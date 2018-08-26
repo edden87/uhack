@@ -3,12 +3,23 @@
  * Template Name: Buyer's Order
  */
 get_header();
+    $buyer = get_option('buyer_account');
+
+    if($buyer)
+    {
+        $balance = ' Balance (P '  . number_format_i18n($buyer[0]->amount) . ')';
+    }
+    else {
+        $balance = '<a href="https://api-uat.unionbankph.com/partners/sb/convergent/v1/oauth2/authorize?client_id=dd9586f0-0456-48a3-812c-47a6e9a1bd0f&response_type=code&scope=account_balances transfers&redirect_uri=http://edf93831.ngrok.io/authenticated/" class="btn btn-sm btn-primary waves-effect waves-light mb-4">
+ Sync Account</a>';
+    }
 ?>
     <!-- Page-Title -->
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box">
-                <h4 class="page-title">Orders</h4>
+                <h4 class="page-title">Orders </h4>
+                <p><?= $balance ?></p>
             </div>
         </div>
     </div>
