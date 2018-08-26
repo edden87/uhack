@@ -7,7 +7,6 @@ get_header(); ?>
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box">
-                <h4 class="page-title">Hello World!</h4>
                 <?php
                     $code = $_GET['code'];
                     update_option('auth_session', $code);
@@ -22,24 +21,27 @@ get_header(); ?>
     </div>
     <!-- end page title end breadcrumb -->
     <script>
-        swal(
-            {
-                title: 'Authentica!',
-                text: 'Redirecting in 2 seconds...',
-                type: 'success',
-                timer: 2000,
-                showCancelButton: false,
-                showConfirmButton: false
-            }
-        ).then(
-            function() {
-            },
-            function (dismiss) {
-                if ( dismiss === 'timer' )
+        jQuery(document).ready(function($) {
+            swal(
                 {
-                    window.location.replace("/farmers-main/");
+                    title: 'Sync Account!',
+                    text: 'Redirecting in 2 seconds...',
+                    type: 'success',
+                    timer: 2000,
+                    showCancelButton: false,
+                    showConfirmButton: false
                 }
-            }
-        )
+            ).then(
+                function() {
+                },
+                function (dismiss) {
+                    if ( dismiss === 'timer' )
+                    {
+                        window.location.replace("/buyers-order");
+                    }
+                }
+            )
+        })
+
     </script>
 <?php get_footer();
