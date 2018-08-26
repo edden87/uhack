@@ -127,6 +127,7 @@ get_header();
                                     ?>
                                         <p class="text-center"><i class="fa fa-check-circle"></i> Approved</p>
                                         <?= $message_string ?>
+                                        <a href="#" class="btn btn-success waves-effect waves-light btn-block award" data-id="<?= get_the_ID() ?>><i class="mdi mdi-trophy-outline"></i> Award</a>';
                                     <?php elseif ( get_post_meta(get_the_ID(), 'uhack-status', true) == 'declined' ) : ?>
                                         <p class="text-center"><i class="fa fa-times-circle"></i> Declined</p>
                                     <?php else : ?>
@@ -202,6 +203,16 @@ get_header();
                     }
                 })
 
+            });
+
+            $('.award').click(function() {
+                $data_award = {'action' : 'award_bid', 'order_id' : $(this).attr('data-id')}
+                $.post(ajaxurl, $data_award, function(e) {
+                    if (e.success == true)
+                    {
+
+                    }
+                }
             })
         });
     </script>
